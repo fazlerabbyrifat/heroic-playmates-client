@@ -1,6 +1,32 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import logo from "../../assets/logo.jpg";
+import { useSpring, animated } from "react-spring";
 
 const Navbar = () => {
+  const styles = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+    config: { duration: 3000 },
+  });
+
+  const navItems = (
+    <div className="lg:flex text-xl font-semibold">
+      <li>
+        <Link>Home</Link>
+      </li>
+      <li>
+        <Link>All Toys</Link>
+      </li>
+      <li>
+        <Link>My Toys</Link>
+      </li>
+      <li>
+        <Link>Add A Toy</Link>
+      </li>
+    </div>
+  );
+
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -23,50 +49,31 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-compact dropdown-content mt-5 p-2 shadow bg-base-100 rounded-box w-44"
           >
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li tabIndex={0}>
-              <a className="justify-between">
-                Parent
-                <svg
-                  className="fill-current"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
-                </svg>
-              </a>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
+            {navItems}
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+        <Link
+          to="/"
+          className="flex items-center gap-2 text-3xl font-extrabold"
+        >
+          <img className="w-12" src={logo} alt="" />
+          <animated.h1 style={styles} className="text-teal-500">
+            Heroic Playmates
+          </animated.h1>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <a>Item 1</a>
-          </li>
-          
-        </ul>
+        <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
-      <div className="navbar-end">
-        <a className="btn">Get started</a>
+      <div className="navbar-end gap-5">
+        <Link className="btn btn-error">Login</Link>
+        <div className="avatar">
+          <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+          </div>
+        </div>
       </div>
     </div>
   );
