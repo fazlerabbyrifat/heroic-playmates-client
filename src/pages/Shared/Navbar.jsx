@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.jpg";
 import { useSpring, animated } from "react-spring";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
+
   const styles = useSpring({
     from: { opacity: 0 },
     to: { opacity: 1 },
@@ -18,12 +21,16 @@ const Navbar = () => {
       <li>
         <Link>All Toys</Link>
       </li>
-      <li>
-        <Link>My Toys</Link>
-      </li>
-      <li>
-        <Link>Add A Toy</Link>
-      </li>
+      {user && (
+        <>
+          <li>
+            <Link>My Toys</Link>
+          </li>
+          <li>
+            <Link>Add A Toy</Link>
+          </li>
+        </>
+      )}
     </div>
   );
 
@@ -68,12 +75,23 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
       <div className="navbar-end gap-5">
-        <Link to='/login' className="btn btn-error">Login</Link>
-        <div className="avatar">
-          <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+        {user && (
+          <div className="avatar">
+            <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 group">
+              <img src={user?.photoUrl} />
+              <span className="hidden group-hover:block absolute top-[60px] bg-gray-200 px-2 py-1 text-xs rounded">
+                {user.displayName}
+              </span>
+            </div>
           </div>
-        </div>
+        )}
+        {user ? (
+          <Link className="btn btn-error">Logout</Link>
+        ) : (
+          <Link to="/login" className="btn btn-error">
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );
