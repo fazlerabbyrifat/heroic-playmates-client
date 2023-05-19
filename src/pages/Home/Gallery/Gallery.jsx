@@ -17,8 +17,8 @@ const Gallery = () => {
         Aos.init({
             duration: 2000,
             easing: "ease-in-out-back",
-            once: true,
             mirror: false,
+            
         });
         Aos.refresh();
     }, []);
@@ -46,7 +46,7 @@ const Gallery = () => {
             <div
               key={image.id}
               className="rounded-lg overflow-hidden"
-              data-aos="fade-up"
+              data-aos="slide-up"
             >
               <img
                 src={image.src}
