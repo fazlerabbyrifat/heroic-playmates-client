@@ -1,0 +1,79 @@
+[
+    {
+      "category": "Marvel",
+      "toys": [
+        {
+          "id": 1,
+          "name": "Captain America",
+          "price": 9.99,
+          "rating": 4.5,
+          "image": "https://i.ibb.co/yFJxftF/marvel3.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Iron Man",
+          "price": 12.99,
+          "rating": 3.8,
+          "image": "https://i.ibb.co/3BngHLs/marvel4.jpg"
+        }
+      ]
+    },
+    {
+      "category": "Dc",
+      "toys": [
+        {
+          "id": 3,
+          "name": "The Flash",
+          "price": 7.99,
+          "rating": 4.2,
+          "image": "https://i.ibb.co/P9DtB59/dc1.jpg"
+        },
+        {
+          "id": 4,
+          "name": "Batman",
+          "price": 14.99,
+          "rating": 4.7,
+          "image": "https://i.ibb.co/W35bFxv/dc5.jpg"
+        }
+      ]
+    },
+    {
+        "category": "Star Wars",
+      "toys": [
+        {
+          "id": 5,
+          "name": "Wars Hero 1",
+          "price": 7.99,
+          "rating": 4.2,
+          "image": "https://i.ibb.co/d4Xr73k/star-wars1.jpg"
+        },
+        {
+          "id": 6,
+          "name": "Wars Hero 2",
+          "price": 14.99,
+          "rating": 4.7,
+          "image": "https://i.ibb.co/FBt6yGD/star-wars2.jpg"
+        }
+      ]
+    },
+    {
+        "category": "Transformer",
+      "toys": [
+        {
+          "id": 7,
+          "name": "Optimus Prime",
+          "price": 7.99,
+          "rating": 4.2,
+          "image": "https://i.ibb.co/MDf17Px/transformer2.jpg"
+        },
+        {
+          "id": 8,
+          "name": "Ultra Magnus",
+          "price": 14.99,
+          "rating": 4.7,
+          "image": "https://i.ibb.co/g6JLsX9/transformer3.jpg"
+        }
+      ]
+    }
+  ]
+  

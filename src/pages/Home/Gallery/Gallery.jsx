@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import "aos/dist/aos.css";
 import pic1 from "../../../assets/Gallery/gallery1.jpg";
 import pic2 from "../../../assets/Gallery/gallery2.jpg";
 import pic3 from "../../../assets/Gallery/gallery3.jpg";
@@ -9,8 +10,19 @@ import pic7 from "../../../assets/Gallery/gallery7.jpg";
 import pic8 from "../../../assets/Gallery/gallery8.jpg";
 import pic9 from "../../../assets/Gallery/gallery9.jpg";
 import pic10 from "../../../assets/Gallery/gallery10.jpg";
+import Aos from "aos";
 
 const Gallery = () => {
+    useEffect(() => {
+        Aos.init({
+            duration: 2000,
+            easing: "ease-in-out-back",
+            once: true,
+            mirror: false,
+        });
+        Aos.refresh();
+    }, []);
+
   const images = [
     { id: 1, src: pic1, alt: "Image 1" },
     { id: 2, src: pic2, alt: "Image 2" },
@@ -25,7 +37,7 @@ const Gallery = () => {
   ];
 
   return (
-    <section className="gallery-section py-10">
+    <section className="gallery-section px-2 lg:px-0 py-10">
       <div className="container mx-auto">
         <h2 className="text-3xl font-bold text-center mb-8">Gallery</h2>
         <p className="text-xl font-medium text-center mb-8">Our valuable customers with their superhero outfit and they competed in our most excited event in this year.</p>
@@ -33,7 +45,8 @@ const Gallery = () => {
         {images.map((image) => (
             <div
               key={image.id}
-              className="rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:scale-105 hover:-rotate-1"
+              className="rounded-lg overflow-hidden"
+              data-aos="fade-up"
             >
               <img
                 src={image.src}
