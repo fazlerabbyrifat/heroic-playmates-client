@@ -3,19 +3,29 @@ import { Link } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import Rating from "react-rating-stars-component";
-import { key } from "localforage";
+import Aos from "aos";
 
 const CategoryShop = () => {
   const [categories, setCategories] = useState([]);
   const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {
-    fetch("http://localhost:5000/categories")
+    fetch("https://heroic-playmates-server.vercel.app/categories")
       .then((res) => res.json())
       .then((data) => {
         setCategories(data);
       });
   }, []);
+
+  useEffect(() => {
+    Aos.init({
+        duration: 2000,
+        easing: "ease-in-out-back",
+        mirror: false,
+        
+    });
+    Aos.refresh();
+}, []);
 
   const handleTabClick = (index) => {
     setActiveTab(index);
@@ -23,8 +33,10 @@ const CategoryShop = () => {
 
   return (
     <section className="category-section px-2 lg:px-0 py-10">
-      <div className="text-center my-5 space-y-5">
+      <div className="text-center my-5 px-10 space-y-5">
+        <div className="border-4 border-dashed w-40 mx-auto p-4">
         <h4 className="text-xl font-semibold">Category</h4>
+        </div>
         <h2 className="text-3xl font-bold">Our Categories</h2>
       </div>
       <Tabs>
@@ -32,7 +44,7 @@ const CategoryShop = () => {
           {categories.map((category, index) => (
             <Tab
               key={index}
-              className={`p-4 tab ${
+              className={`py-2 tab ${
                 activeTab === index ? "tab-active" : ""
               } text-xl font-bold`}
               onClick={() => handleTabClick(index)}
@@ -48,7 +60,10 @@ const CategoryShop = () => {
               {category.toys.map((toy) => (
                 <div key={toy.id} className="card bg-base-100 shadow-xl">
                   <figure className="px-10 pt-10">
-                    <img src={toy.image} alt={toy.name} className="h-[320px]" />
+                    <img src={toy.image} 
+                    alt={toy.name} 
+                    className="h-[320px]"
+                    data-aos="fade-up" />
                   </figure>
                   <div className="card-body items-center text-center">
                     <h3 className="text-xl font-semibold">{toy.name}</h3>

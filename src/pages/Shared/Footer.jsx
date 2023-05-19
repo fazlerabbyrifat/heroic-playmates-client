@@ -39,7 +39,7 @@ const Footer = () => {
             <p className="text-sm">Email: info@heroicplaymates.com</p>
           </div>
         </div>
-        <div className="flex justify-center mt-6">
+        <div className="flex lg:justify-center mt-6">
           <ul className="flex space-x-4 text-2xl text-green-700">
             <li>
               <Link>

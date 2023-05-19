@@ -68,7 +68,7 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
       <div className="navbar-end gap-5">
-        <Link className="btn btn-error">Login</Link>
+        <Link to='/login' className="btn btn-error">Login</Link>
         <div className="avatar">
           <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
             <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
