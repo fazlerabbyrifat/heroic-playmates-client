@@ -16,10 +16,10 @@ const Navbar = () => {
   const navItems = (
     <div className="lg:flex text-xl font-semibold">
       <li>
-        <Link to='/'>Home</Link>
+        <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to='/allToys'>All Toys</Link>
+        <Link to="/allToys">All Toys</Link>
       </li>
       {user && (
         <>
@@ -27,7 +27,7 @@ const Navbar = () => {
             <Link>My Toys</Link>
           </li>
           <li>
-            <Link>Add A Toy</Link>
+            <Link to="/addToy">Add A Toy</Link>
           </li>
         </>
       )}
@@ -86,9 +86,9 @@ const Navbar = () => {
         {user && (
           <div className="avatar">
             <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 group">
-              <img src={user?.photoURL} />
+              <img src={user?.photoURL} alt="Profile" />
               <span className="hidden group-hover:block absolute top-[60px] bg-gray-200 px-2 py-1 text-xs rounded">
-                {user.displayName}
+                {user?.displayName}
               </span>
             </div>
           </div>

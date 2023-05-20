@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import Rating from "react-rating-stars-component";
 import Aos from "aos";
+import { AuthContext } from "../../../providers/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
 
 const CategoryShop = () => {
   const [categories, setCategories] = useState([]);
   const [activeTab, setActiveTab] = useState(0);
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("https://heroic-playmates-server.vercel.app/categories")
@@ -19,23 +23,34 @@ const CategoryShop = () => {
 
   useEffect(() => {
     Aos.init({
-        duration: 2000,
-        easing: "ease-in-out-back",
-        mirror: false,
-        
+      duration: 2000,
+      easing: "ease-in-out-back",
+      mirror: false,
     });
     Aos.refresh();
-}, []);
+  }, []);
 
   const handleTabClick = (index) => {
     setActiveTab(index);
   };
 
+  const handleViewDetails = (toyId) => {
+    if (!user) {
+      toast.error("You have to log in first to view details");
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+    } else {
+      navigate(`/categories/${toyId}`);
+    }
+  };
+
+
   return (
     <section className="category-section px-2 lg:px-0 py-10">
       <div className="text-center my-5 px-10 space-y-5">
         <div className="border-4 border-dashed w-40 mx-auto p-4">
-        <h4 className="text-xl font-semibold">Category</h4>
+          <h4 className="text-xl font-semibold">Category</h4>
         </div>
         <h2 className="text-3xl font-bold">Our Categories</h2>
       </div>
@@ -60,10 +75,12 @@ const CategoryShop = () => {
               {category.toys.map((toy) => (
                 <div key={toy.id} className="card bg-base-100 shadow-xl">
                   <figure className="px-10 pt-10">
-                    <img src={toy.image} 
-                    alt={toy.name} 
-                    className="h-[320px]"
-                    data-aos="fade-up" />
+                    <img
+                      src={toy.image}
+                      alt={toy.name}
+                      className="h-[320px]"
+                      data-aos="fade-up"
+                    />
                   </figure>
                   <div className="card-body items-center text-center">
                     <h3 className="text-xl font-semibold">{toy.name}</h3>
@@ -83,12 +100,14 @@ const CategoryShop = () => {
                       <span className="ml-2">{toy.rating}</span>
                     </div>
                     <div className="card-actions">
-                      <Link to={`/categories/${toy.id}`}>
-                        <button className="btn btn-primary">
-                          View Details
-                        </button>
-                      </Link>
+                    <button
+                        className="btn btn-accent"
+                        onClick={() => handleViewDetails(toy.id)}
+                      >
+                        View Details
+                      </button>
                     </div>
+                    <ToastContainer></ToastContainer>
                   </div>
                 </div>
               ))}

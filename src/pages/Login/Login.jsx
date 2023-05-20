@@ -1,12 +1,17 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import { toast } from 'react-toastify';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SocialLogin from '../Shared/SocialLogin';
 
 const Login = () => {
     const {login} = useContext(AuthContext);
     const [error, setError] = useState('');
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || '/';
+    const toyId = location.state?.toyId;
 
     const handleLogin = event => {
         event.preventDefault();
@@ -23,6 +28,11 @@ const Login = () => {
             console.log(loggedUser)
             toast.success('login success');
             form.reset();
+            if (toyId) {
+              navigate(`/allToys/${toyId}`);
+            } else {
+              navigate(from, { replace: true });
+            }
         })
         .catch( error => {
             setError(error.message);

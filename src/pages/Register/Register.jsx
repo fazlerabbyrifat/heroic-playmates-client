@@ -14,7 +14,7 @@ const Register = () => {
   const [photoUrl, setPhotoUrl] = useState("");
   const [errors, setErrors] = useState({});
 
-  const handleRegister = (event) => {
+  const handleRegister = async(event) => {
     event.preventDefault();
     setErrors({});
     const errors = {};
@@ -41,21 +41,20 @@ const Register = () => {
       return;
     }
 
-    createUser(email, password)
-      .then((result) => {
-        updateProfile(auth.currentUser, {
-          displayName: name,
-          photoURL: photoUrl,
-        });
-        toast.success("User registered successfully");
-        setName("");
-        setEmail("");
-        setPassword("");
-        setPhotoUrl("");
-      })
-      .catch((error) => {
-        toast.error("Error registering user");
+    try {
+      const result = await createUser(email, password);
+      await updateProfile(auth.currentUser, {
+        displayName: name,
+        photoURL: photoUrl,
       });
+      toast.success("User registered successfully");
+      setName("");
+      setEmail("");
+      setPassword("");
+      setPhotoUrl("");
+    } catch (error) {
+      toast.error("Error registering user");
+    }
   };
 
   return (
