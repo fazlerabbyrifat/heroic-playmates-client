@@ -4,6 +4,7 @@ import { updateProfile } from "firebase/auth";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
+import SocialLogin from "../Shared/SocialLogin";
 
 const Register = () => {
   const { createUser, auth } = useContext(AuthContext);
@@ -149,7 +150,15 @@ const Register = () => {
             />
           </div>
         </form>
-        <small><p className="mt-5">Already our registered member? Please <Link className="text-primary" to='/login'>login</Link></p></small>
+        <p className="mt-5">
+          <small>
+            Already our registered member? Please{" "}
+            <Link className="text-primary" to="/login">
+              login
+            </Link>
+          </small>
+        </p>
+        <SocialLogin></SocialLogin>
       </div>
       <ToastContainer />
     </div>

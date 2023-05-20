@@ -16,10 +16,10 @@ const Navbar = () => {
   const navItems = (
     <div className="lg:flex text-xl font-semibold">
       <li>
-        <Link>Home</Link>
+        <Link to='/'>Home</Link>
       </li>
       <li>
-        <Link>All Toys</Link>
+        <Link to='/allToys'>All Toys</Link>
       </li>
       {user && (
         <>
