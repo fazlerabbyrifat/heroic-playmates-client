@@ -5,7 +5,7 @@ import { useSpring, animated } from "react-spring";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   const styles = useSpring({
     from: { opacity: 0 },
@@ -33,6 +33,14 @@ const Navbar = () => {
       )}
     </div>
   );
+
+  const handleLogout = () => {
+    logout()
+      .then(() => {})
+      .catch((error) => {
+        console.error(error.message);
+      });
+  };
 
   return (
     <div className="navbar py-10 bg-base-100">
@@ -86,7 +94,12 @@ const Navbar = () => {
           </div>
         )}
         {user ? (
-          <Link className="btn btn-error">Logout</Link>
+          <Link>
+            <button onClick={handleLogout} className="btn btn-error">
+              {" "}
+              Logout
+            </button>
+          </Link>
         ) : (
           <Link to="/login" className="btn btn-error">
             Login

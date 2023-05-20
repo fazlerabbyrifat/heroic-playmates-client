@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
     const {login} = useContext(AuthContext);
+    const [error, setError] = useState('');
 
     const handleLogin = event => {
         event.preventDefault();
@@ -12,6 +13,8 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+
+        setError('');
 
         login(email, password)
         .then(result => {
@@ -21,7 +24,7 @@ const Login = () => {
             form.reset();
         })
         .catch( error => {
-            toast.error(error.message);
+            setError(error.message);
         })
     }
 
@@ -56,6 +59,7 @@ const Login = () => {
           <input type="submit" className="w-full py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600" value="Login" />
         </form>
         <p className='mt-5'><small>New to our website? Please <Link className='text-primary' to='/register'> register </Link></small></p>
+        <p className='text-error'>{error}</p>
       </div>
     </div>
 
