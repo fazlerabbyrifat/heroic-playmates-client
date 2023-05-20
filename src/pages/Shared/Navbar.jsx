@@ -78,7 +78,7 @@ const Navbar = () => {
         {user && (
           <div className="avatar">
             <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 group">
-              <img src={user?.photoUrl} />
+              <img src={user?.photoURL} />
               <span className="hidden group-hover:block absolute top-[60px] bg-gray-200 px-2 py-1 text-xs rounded">
                 {user.displayName}
               </span>

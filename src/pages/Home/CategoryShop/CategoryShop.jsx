@@ -40,11 +40,11 @@ const CategoryShop = () => {
         <h2 className="text-3xl font-bold">Our Categories</h2>
       </div>
       <Tabs>
-        <TabList className="flex flex-col-reverse lg:flex-row items-center justify-center lg:space-x-4 mb-8">
+        <TabList className="flex flex-col-reverse lg:flex-row justify-center lg:space-x-4 mb-8">
           {categories.map((category, index) => (
             <Tab
               key={index}
-              className={`py-2 tab ${
+              className={`tab ${
                 activeTab === index ? "tab-active" : ""
               } text-xl font-bold`}
               onClick={() => handleTabClick(index)}
@@ -83,7 +83,7 @@ const CategoryShop = () => {
                       <span className="ml-2">{toy.rating}</span>
                     </div>
                     <div className="card-actions">
-                      <Link>
+                      <Link to={`/categories/${toy.id}`}>
                         <button className="btn btn-primary">
                           View Details
                         </button>
