@@ -34,14 +34,14 @@ const CategoryShop = () => {
     setActiveTab(index);
   };
 
-  const handleViewDetails = (toyId) => {
+  const handleViewDetails = () => {
     if (!user) {
       toast.error("You have to log in first to view details");
       setTimeout(() => {
         navigate("/login");
       }, 2000);
     } else {
-      navigate(`/categories/${toyId}`);
+      navigate('/');
     }
   };
 
@@ -102,7 +102,7 @@ const CategoryShop = () => {
                     <div className="card-actions">
                     <button
                         className="btn btn-accent"
-                        onClick={() => handleViewDetails(toy.id)}
+                        onClick={handleViewDetails}
                       >
                         View Details
                       </button>
