@@ -25,7 +25,7 @@ const AddToy = () => {
       description,
       category
     };
-    fetch("http://localhost:5000/allToys", {
+    fetch("https://heroic-playmates-server.vercel.app/allToys", {
       method: "POST",
       headers: {
         "content-type": "application/json",

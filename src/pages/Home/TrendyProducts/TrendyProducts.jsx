@@ -7,7 +7,7 @@ const TrendyProducts = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/trending")
+    fetch("https://heroic-playmates-server.vercel.app/trending")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);

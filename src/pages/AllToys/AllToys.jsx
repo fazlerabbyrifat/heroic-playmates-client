@@ -13,7 +13,7 @@ const AllToys = () => {
   const location = useLocation();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/allToys?search=${searchQuery}`)
+    fetch(`https://heroic-playmates-server.vercel.app/allToys?search=${searchQuery}`)
       .then((res) => res.json())
       .then((data) => {
         setToys(data);
